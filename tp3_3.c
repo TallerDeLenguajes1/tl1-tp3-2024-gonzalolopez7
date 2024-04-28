@@ -14,6 +14,7 @@ int main() {
     cargarNombres(vector);
     printf("\n");
     mostrarNombres(vector);
+    free(vector);
 
     return 0;
 }
