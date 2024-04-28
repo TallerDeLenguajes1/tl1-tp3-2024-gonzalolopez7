@@ -5,41 +5,52 @@
 
 #define N 5
 
-void cargarNombres(char * vector[N]);
-void mostrarNombres(char * vector[N]);
+void cargarNombres(char ** vector, int cantNombres);
+void mostrarNombres(char ** vector, int cantNombres);
 
 int main() {
 
-    char * vector[N];
-    cargarNombres(vector);
+    char ** vector;
+    int cantNombres;
+    printf("Ingresar cantidad de nombres: ");
+    scanf("%d", &cantNombres);
+    vector = (char **)malloc(sizeof(char) * cantNombres);
+    cargarNombres(vector, cantNombres);
     printf("\n");
-    mostrarNombres(vector);
-    free(vector);
+    mostrarNombres(vector, cantNombres);
+    for (int i = 0; i < cantNombres; i++)
+    {
+        free(*vector);
+        vector++;
+    }
 
     return 0;
 }
 
-void cargarNombres(char * vector[N])
+void cargarNombres(char ** vector, int cantNombres)
 {
 
-    char nombre[50];
+    char *nombre = (char *)malloc(sizeof(char) * 50);
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < cantNombres; i++)
     {
         
         printf("Ingresar nombre %d: ", i+1);
+        fflush(stdin);
         gets(nombre);
         vector[i] = (char *)malloc((strlen(nombre)+1) * sizeof(char));
         strcpy(vector[i], nombre);
 
     }
 
+    free(nombre);
+
 }
 
-void mostrarNombres(char * vector[N])
+void mostrarNombres(char ** vector, int cantNombres)
 {
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < cantNombres; i++)
     {
         
         printf("Nombre %d: ", i+1);
