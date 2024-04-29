@@ -14,7 +14,7 @@ int main() {
     int cantNombres;
     printf("Ingresar cantidad de nombres: ");
     scanf("%d", &cantNombres);
-    vector = (char **)malloc(sizeof(char) * cantNombres);
+    vector = (char **)malloc(sizeof(char *) * cantNombres);
     cargarNombres(vector, cantNombres);
     printf("\n");
     mostrarNombres(vector, cantNombres);
@@ -23,6 +23,7 @@ int main() {
         free(*vector);
         vector++;
     }
+    free(vector);
 
     return 0;
 }
